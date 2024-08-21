@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felicidades en tu Cumpleaños</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Color de fondo oscuro */
+            color: #f5f5f5; /* Color de texto claro */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #ffcc00; /* Color dorado para encabezados */
+        }
+        input[type="text"], select {
+            padding: 10px;
+            margin-top: 10px;
+            width: 200px;
+        }
+        input[type="submit"] {
+            background-color: #ffcc00; /* Botón dorado */
+            color: #1a1a1a; /* Texto oscuro en el botón */
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #e6b800; /* Efecto hover más oscuro */
+        }
+    </style>
+</head>
+<body>
+    <h1>Felicidades en tu Cumpleaños!</h1>
+    <form method="POST">
+        <label for="nombre">Ingresa tu nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br><br>
+        <h3>Selecciona un poema:</h3>
+        <select name="poema" required>
+            <option value="">-- Elige un poema --</option>
+            {% for i in range(poemas|length) %}
+                <option value="{{ i }}">{{ poemas[i][:20] }}...</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="¡Celebra!">
+    </form>
+
+    {% if nombre and poema %}
+        <h2>¡Feliz cumpleaños, {{ nombre }}!</h2>
+        <h3>Poema para ti:</h3>
+        <p>{{ poema }}</p>
+    {% endif %}
+</body>
+</html>
